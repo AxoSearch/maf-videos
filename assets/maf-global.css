@@ -9,6 +9,17 @@
 	#site-navigation .main-nav > ul > li > a{padding-left:11px;padding-right:11px;font-size:14.5px}
 	#site-navigation .main-nav > ul > li.menu-item-has-children > a{padding-right:6px}
 }
+.site-header .site-logo{flex-shrink:0}
+@media (min-width:769px) and (max-width:1120px){
+	.site-header .inside-header{padding-left:20px;padding-right:20px}
+	.site-header .site-logo img{width:56px;height:auto}
+	#site-navigation .main-nav > ul > li > a{padding-left:6px;padding-right:6px;font-size:13px}
+	#site-navigation .main-nav > ul > li.menu-item-has-children > a{padding-right:3px}
+	#site-navigation .main-nav > ul > li.mafx-menu-videos > a{padding:0 12px !important;margin:0 2px}
+	#site-navigation .main-nav > ul > li.mafx-menu-contact > a{padding:0 14px !important;margin-left:4px}
+}
+/* Tablette étroite : le menu passe sur deux lignes, aligné à droite, plutôt que de déborder */
+@media (min-width:769px) and (max-width:980px){#site-navigation .main-nav > ul{flex-wrap:wrap;justify-content:flex-end}}
 /* « Vidéos » : pastille blanche */
 #site-navigation .main-nav > ul > li.mafx-menu-videos{margin-left:6px}
 #site-navigation .main-nav > ul > li.mafx-menu-videos > a{display:inline-flex;align-items:center;line-height:1;height:38px;padding:0 16px !important;margin:0 4px;border-radius:999px;background:#fff;color:#3361E1 !important;font-weight:700}
