@@ -15,8 +15,6 @@
 	.site-header .site-logo img{width:56px;height:auto}
 	#site-navigation .main-nav > ul > li > a{padding-left:6px;padding-right:6px;font-size:13px}
 	#site-navigation .main-nav > ul > li.menu-item-has-children > a{padding-right:3px}
-	#site-navigation .main-nav > ul > li.mafx-menu-videos > a{padding:0 12px !important;margin:0 2px}
-	#site-navigation .main-nav > ul > li.mafx-menu-contact > a{padding:0 14px !important;margin-left:4px}
 }
 /* Tablette étroite : le menu passe sur deux lignes, aligné à droite, plutôt que de déborder */
 @media (min-width:769px) and (max-width:980px){#site-navigation .main-nav > ul{flex-wrap:wrap;justify-content:flex-end}}
@@ -28,6 +26,11 @@
 #site-navigation .main-nav > ul > li.mafx-menu-contact > a{display:inline-flex;align-items:center;gap:8px;line-height:1;height:42px;padding:0 18px !important;margin-left:6px;border-radius:999px;background:#E1B333;color:#14213D !important;font-family:Poppins,sans-serif;font-weight:700;transition:transform .2s ease,box-shadow .2s ease}
 #site-navigation .main-nav > ul > li.mafx-menu-contact > a::before,.mafx-nav-contact::before{content:"";width:17px;height:17px;flex-shrink:0;background:no-repeat center/17px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314213D' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='M3 7l9 6 9-6'/%3E%3C/svg%3E")}
 #site-navigation .main-nav > ul > li.mafx-menu-contact > a:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(10,20,60,.25);background:#E1B333}
+
+@media (min-width:769px) and (max-width:1120px){
+	#site-navigation .main-nav > ul > li.mafx-menu-videos > a{padding:0 12px !important;margin:0 2px}
+	#site-navigation .main-nav > ul > li.mafx-menu-contact > a{padding:0 14px !important;margin-left:4px}
+}
 
 /* ===== Menu (mobile) : logo + Contact + burger ===== */
 .mafx-nav-contact{display:none}
