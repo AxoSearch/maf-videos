@@ -1,0 +1,41 @@
+/* Vidéos MAF : menu et pied de page sur tout le site */
+
+/* ===== Menu (ordinateur) ===== */
+@media (min-width:769px){
+	#site-navigation .main-nav > ul{display:flex;flex-wrap:nowrap;align-items:center}
+	#site-navigation .main-nav > ul > li > a{white-space:nowrap}
+}
+@media (min-width:769px) and (max-width:1300px){
+	#site-navigation .main-nav > ul > li > a{padding-left:11px;padding-right:11px;font-size:14.5px}
+	#site-navigation .main-nav > ul > li.menu-item-has-children > a{padding-right:6px}
+}
+/* « Vidéos » : pastille blanche */
+#site-navigation .main-nav > ul > li.mafx-menu-videos{margin-left:6px}
+#site-navigation .main-nav > ul > li.mafx-menu-videos > a{display:inline-flex;align-items:center;line-height:1;height:38px;padding:0 16px !important;margin:0 4px;border-radius:999px;background:#fff;color:#3361E1 !important;font-weight:700}
+#site-navigation .main-nav > ul > li.mafx-menu-videos > a:hover,#site-navigation .main-nav > ul > li.mafx-menu-videos.current-menu-item > a{background:#EAF0FF;color:#2449B8 !important}
+/* « Contact » : bouton jaune avec enveloppe */
+#site-navigation .main-nav > ul > li.mafx-menu-contact > a{display:inline-flex;align-items:center;gap:8px;line-height:1;height:42px;padding:0 18px !important;margin-left:6px;border-radius:999px;background:#E1B333;color:#14213D !important;font-family:Poppins,sans-serif;font-weight:700;transition:transform .2s ease,box-shadow .2s ease}
+#site-navigation .main-nav > ul > li.mafx-menu-contact > a::before,.mafx-nav-contact::before{content:"";width:17px;height:17px;flex-shrink:0;background:no-repeat center/17px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314213D' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='M3 7l9 6 9-6'/%3E%3C/svg%3E")}
+#site-navigation .main-nav > ul > li.mafx-menu-contact > a:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(10,20,60,.25);background:#E1B333}
+
+/* ===== Menu (mobile) : logo + Contact + burger ===== */
+.mafx-nav-contact{display:none}
+@media (max-width:768px){
+	.mobile-menu-control-wrapper{display:flex !important;align-items:center;gap:10px}
+	.mafx-nav-contact{display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px;border-radius:999px;background:#E1B333;color:#14213D !important;font-family:Poppins,sans-serif;font-weight:700;font-size:14px;text-decoration:none;order:-1}
+	.mafx-nav-contact::before{width:15px;height:15px;background-size:15px}
+	/* Dans le menu déplié : Vidéos et Contact restent des liens simples */
+	#site-navigation .main-nav > ul > li.mafx-menu-videos > a,#site-navigation .main-nav > ul > li.mafx-menu-contact > a{display:block;height:auto;line-height:inherit;margin:0;padding:0 20px !important;border-radius:0;background:none;color:inherit !important;box-shadow:none;transform:none}
+	#site-navigation .main-nav > ul > li.mafx-menu-contact > a::before{display:none}
+	#site-navigation .main-nav > ul{display:block}
+}
+
+/* ===== Pied de page bleu nuit ===== */
+.site-footer .footer-widgets,.site-footer .footer-widgets-container,.site-footer .site-info{background:#14213D !important}
+.site-footer .footer-widgets,.site-footer .footer-widgets .widget,.site-footer .footer-widgets p,.site-footer .footer-widgets .gb-text{color:#D5DDF0 !important}
+.site-footer .footer-widgets a{color:#fff !important;text-decoration:none}
+.site-footer .footer-widgets a:hover{color:#E1B333 !important}
+.site-footer .footer-widgets .widget{background:transparent !important}
+.site-footer .footer-widget-2 .widget:first-child p,.site-footer .footer-widget-3 .widget:first-child p{color:#fff !important;font-family:Poppins,sans-serif;font-weight:700}
+.site-footer .site-info{color:#9FAAC6 !important;border-top:1px solid rgba(255,255,255,.08)}
+.site-footer .site-info a{color:#fff !important}

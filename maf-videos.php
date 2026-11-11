@@ -18,6 +18,7 @@ define( 'MAFV_URL', plugin_dir_url( __FILE__ ) );
 define( 'MAFV_FILE', __FILE__ );
 require_once __DIR__ . '/maj-github.php';
 require_once __DIR__ . '/recherche.php';
+require_once __DIR__ . '/global.php';
 
 /* -------------------------------------------------------------------------
  * 1. Réglages simples (thèmes et emplacements)
