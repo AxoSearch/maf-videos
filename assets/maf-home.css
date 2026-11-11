@@ -390,3 +390,6 @@ body:has(.mafx-first) .footer-widgets-container,body:has(.mafx-first) .site-info
 .mafx-s .mafx-ct-stats{margin-bottom:28px}
 .mafx-s .mafx-ct-ref{margin-top:28px}
 @media (max-width:980px){.mafx-s .mafx-ct-form{margin-top:-56px}}
+/* Titres H1 des pages refaites (hors home) : même taille que les articles du site (42 px, 34 px sur mobile) */
+.mafx-vp-hero .mafx-h1,.mafx-ct-hero .mafx-h1,.mafx-page-hero .mafx-h1{font-size:42px;line-height:1.15}
+@media (max-width:767px){.mafx-vp-hero .mafx-h1,.mafx-ct-hero .mafx-h1,.mafx-page-hero .mafx-h1{font-size:34px}}
