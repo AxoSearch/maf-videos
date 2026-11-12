@@ -41,7 +41,8 @@
 	/* Dans le menu déplié : Vidéos et Contact restent des liens simples */
 	#site-navigation .main-nav > ul > li.mafx-menu-videos > a,#site-navigation .main-nav > ul > li.mafx-menu-contact > a{display:block;height:auto;line-height:inherit;margin:0;padding:0 20px !important;border-radius:0;background:none;color:inherit !important;box-shadow:none;transform:none}
 	#site-navigation .main-nav > ul > li.mafx-menu-contact > a::before{display:none}
-	#site-navigation .main-nav > ul{display:block}
+	#site-navigation:not(.toggled) .main-nav > ul{display:none}
+	#site-navigation.toggled .main-nav > ul{display:block}
 }
 
 /* ===== Pied de page bleu nuit ===== */
