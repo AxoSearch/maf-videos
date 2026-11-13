@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Vidéos MAF
  * Description: Gère toutes les vidéos Mon Appart Facile (formats courts et vidéos détaillées) à un seul endroit, et les affiche sur la home et la page Vidéos.
- * Version: 1.3.1
+ * Version: 1.3.2
  * Author: Mon Appart Facile
  * Text Domain: maf-videos
  * Requires at least: 6.0
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MAFV_VERSION', '1.3.1' );
+define( 'MAFV_VERSION', '1.3.2' );
 define( 'MAFV_URL', plugin_dir_url( __FILE__ ) );
 define( 'MAFV_FILE', __FILE__ );
 require_once __DIR__ . '/maj-github.php';
