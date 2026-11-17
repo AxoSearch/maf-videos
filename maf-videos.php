@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Vidéos MAF
  * Description: Gère toutes les vidéos Mon Appart Facile (formats courts et vidéos détaillées) à un seul endroit, et les affiche sur la home et la page Vidéos.
- * Version: 1.3.3
+ * Version: 1.4.0
  * Author: Mon Appart Facile
  * Text Domain: maf-videos
  * Requires at least: 6.0
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MAFV_VERSION', '1.3.3' );
+define( 'MAFV_VERSION', '1.4.0' );
 define( 'MAFV_URL', plugin_dir_url( __FILE__ ) );
 define( 'MAFV_FILE', __FILE__ );
 require_once __DIR__ . '/maj-github.php';
@@ -108,6 +108,7 @@ function mafv_register() {
 		'maf_hero_tel'    => array( 'boolean', 'rest_sanitize_boolean' ),
 		'maf_hero_yt'     => array( 'boolean', 'rest_sanitize_boolean' ),
 		'maf_home'        => array( 'boolean', 'rest_sanitize_boolean' ),
+		'maf_masquee'     => array( 'boolean', 'rest_sanitize_boolean' ),
 	);
 	foreach ( $metas as $key => $def ) {
 		register_post_meta(
@@ -275,6 +276,11 @@ function mafv_metabox_html( $post ) {
 		<?php endforeach; ?>
 		<div class="d">Toutes les vidéos apparaissent sur la page Vidéos. Ces cases choisissent celles de la home. Si vous en cochez trop, les premières dans l'ordre s'affichent.</div>
 	</div>
+	<div class="mafv-f" style="background:#FFF4F4;border:1px solid #F3C4C4;border-radius:8px;padding:10px 12px">
+		<label class="t">Visibilité sur le site</label>
+		<label style="display:block;margin:4px 0"><input type="checkbox" name="maf_masquee" value="1" <?php checked( (bool) get_post_meta( $post->ID, 'maf_masquee', true ) ); ?>> <strong>Masquer cette vidéo sur le site</strong></label>
+		<div class="d">La fiche reste ici, mais la vidéo n'apparaît plus nulle part sur le site : home, page Vidéos, compteurs et articles qui l'intègrent. Utile pour une vidéo de moins bonne qualité, un doublon ou une ancienne version. Décochez pour la réafficher.</div>
+	</div>
 	<div class="mafv-f">
 		<label class="t" for="maf_ordre">Ordre (facultatif)</label>
 		<input type="text" id="maf_ordre" name="maf_ordre" value="<?php echo esc_attr( $ordre ); ?>" style="max-width:100px">
@@ -310,7 +316,81 @@ function mafv_save( $post_id, $post ) {
 	foreach ( array_keys( mafv_zones() ) as $k ) {
 		update_post_meta( $post_id, $k, ! empty( $_POST[ $k ] ) );
 	}
+	update_post_meta( $post_id, 'maf_masquee', ! empty( $_POST['maf_masquee'] ) );
+	delete_transient( 'mafv_ids_masques' );
 }
+
+/* -------------------------------------------------------------------------
+ * Vidéos masquées : présentes dans l'administration, invisibles sur le site
+ * ---------------------------------------------------------------------- */
+
+/** Identifiants YouTube des vidéos masquées (mis en cache, recalculés à chaque enregistrement). */
+function mafv_ids_masques() {
+	$ids = get_transient( 'mafv_ids_masques' );
+	if ( false !== $ids ) {
+		return $ids;
+	}
+	$ids = array();
+	$q   = new WP_Query(
+		array(
+			'post_type'      => 'maf_video',
+			'post_status'    => 'any',
+			'posts_per_page' => 500,
+			'no_found_rows'  => true,
+			'fields'         => 'ids',
+			'meta_query'     => array( array( 'key' => 'maf_masquee', 'value' => '1' ) ),
+		)
+	);
+	foreach ( $q->posts as $pid ) {
+		$id = mafv_youtube_id( get_post_meta( $pid, 'maf_url', true ) );
+		if ( $id ) {
+			$ids[] = $id;
+		}
+	}
+	set_transient( 'mafv_ids_masques', $ids, DAY_IN_SECONDS );
+	return $ids;
+}
+/* Le cache se vide aussi quand la méta change par l'API (connecteur) ou qu'une fiche est supprimée. */
+foreach ( array( 'added_post_meta', 'updated_post_meta', 'deleted_post_meta' ) as $mafv_h ) {
+	add_action(
+		$mafv_h,
+		function ( $mid, $pid, $key ) {
+			if ( in_array( $key, array( 'maf_masquee', 'maf_url' ), true ) ) {
+				delete_transient( 'mafv_ids_masques' );
+			}
+		},
+		10,
+		3
+	);
+}
+add_action( 'deleted_post', function () { delete_transient( 'mafv_ids_masques' ); } );
+
+/* Une vidéo masquée intégrée dans un article ([maf_video url="…"]) n'est plus affichée. */
+add_filter(
+	'do_shortcode_tag',
+	function ( $out, $tag, $attr ) {
+		if ( 'maf_video' !== $tag || is_admin() ) {
+			return $out;
+		}
+		$id = mafv_youtube_id( is_array( $attr ) ? ( $attr['url'] ?? '' ) : '' );
+		return ( $id && in_array( $id, mafv_ids_masques(), true ) ) ? '' : $out;
+	},
+	10,
+	3
+);
+
+/* Mention « Masquée » dans la liste des vidéos de l'administration. */
+add_filter(
+	'display_post_states',
+	function ( $states, $post ) {
+		if ( 'maf_video' === $post->post_type && get_post_meta( $post->ID, 'maf_masquee', true ) ) {
+			$states['mafv_masquee'] = 'Masquée sur le site';
+		}
+		return $states;
+	},
+	10,
+	2
+);
 
 /* Colonnes de la liste des vidéos. */
 add_filter( 'manage_maf_video_posts_columns', 'mafv_cols' );
@@ -322,6 +402,7 @@ function mafv_cols( $cols ) {
 		'mafv_fmt'   => 'Format',
 		'mafv_theme' => 'Thème',
 		'mafv_zones' => 'Sur la home',
+		'mafv_vis'   => 'Sur le site',
 		'mafv_ordre' => 'Ordre',
 		'date'       => $cols['date'],
 	);
@@ -355,6 +436,11 @@ function mafv_col( $col, $post_id ) {
 				$out[] = 'Section vidéo';
 			}
 			echo esc_html( $out ? implode( ', ', $out ) : '—' );
+			break;
+		case 'mafv_vis':
+			echo get_post_meta( $post_id, 'maf_masquee', true )
+				? '<span style="color:#B42318;font-weight:600">Masquée</span>'
+				: '<span style="color:#1A7F37">Visible</span>';
 			break;
 		case 'mafv_ordre':
 			$o = get_post_meta( $post_id, 'maf_ordre', true );
@@ -394,6 +480,9 @@ function mafv_get( $args = array() ) {
 			continue;
 		}
 		if ( $args['zone'] && ! get_post_meta( $p->ID, $args['zone'], true ) ) {
+			continue;
+		}
+		if ( get_post_meta( $p->ID, 'maf_masquee', true ) ) {
 			continue;
 		}
 		$titre = get_post_meta( $p->ID, 'maf_titre_court', true );
