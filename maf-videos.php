@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Vidéos MAF
  * Description: Gère toutes les vidéos Mon Appart Facile (formats courts et vidéos détaillées) à un seul endroit, et les affiche sur la home et la page Vidéos.
- * Version: 1.4.0
+ * Version: 1.4.1
  * Author: Mon Appart Facile
  * Text Domain: maf-videos
  * Requires at least: 6.0
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MAFV_VERSION', '1.4.0' );
+define( 'MAFV_VERSION', '1.4.1' );
 define( 'MAFV_URL', plugin_dir_url( __FILE__ ) );
 define( 'MAFV_FILE', __FILE__ );
 require_once __DIR__ . '/maj-github.php';
@@ -521,8 +521,9 @@ function mafv_get( $args = array() ) {
 function mafv_img( $v ) {
 	$base = 'https://i.ytimg.com/vi/' . $v['id'] . '/';
 	if ( 'court' === $v['format'] ) {
-		// Image verticale HD des Shorts (1080 x 1920), repli sur la miniature standard.
-		return array( $base . 'oar2.jpg', $base . 'hqdefault.jpg' );
+		// Miniature choisie dans YouTube Studio (hq720, 16:9 avec la vue verticale au centre), repli sur hqdefault.
+		// L'image « oar2 » (verticale) est une image automatique de YouTube qui ne suit pas la miniature choisie.
+		return array( $base . 'hq720.jpg', $base . 'hqdefault.jpg' );
 	}
 	return array( $base . 'maxresdefault.jpg', $base . 'hqdefault.jpg' );
 }
@@ -543,13 +544,15 @@ function mafv_thumb( $v, $class = '' ) {
 	$src = mafv_img( $v );
 	// YouTube renvoie une image grise de 120 px quand une taille n'existe pas : on bascule alors sur le repli.
 	$swap = "if(this.dataset.f!=='1'){this.dataset.f='1';this.src='" . esc_url( $src[1] ) . "';}";
-	return sprintf(
+	$img  = sprintf(
 		'<img class="%s" src="%s" alt="" loading="lazy" decoding="async" onload="%s" onerror="%s">',
 		esc_attr( $class ),
 		esc_url( $src[0] ),
 		esc_attr( 'if(this.naturalWidth<=120){' . $swap . '}' ),
 		esc_attr( $swap )
 	);
+	// Shorts : la miniature est horizontale (vue verticale au centre, bandes sur les côtés) : on ne garde que le centre.
+	return 'court' === $v['format'] ? '<span class="mafv-vt">' . $img . '</span>' : $img;
 }
 
 function mafv_playicon( $size = 20 ) {

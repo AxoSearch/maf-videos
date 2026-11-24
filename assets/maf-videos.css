@@ -3,6 +3,10 @@
 .mafv-play:hover,.mafv-play:focus{background:none;color:inherit}
 .mafv-play:focus-visible{outline:3px solid #E1B333;outline-offset:3px}
 .mafv-play img{display:block;width:100%;object-fit:cover}
+/* Miniature d'un Short : on recadre le centre vertical d'une image horizontale */
+.mafv-vt{position:relative;display:block;width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:inherit;background:#14213D}
+.mafv-play .mafv-vt img{position:absolute;top:0;left:50%;height:100%;width:auto;max-width:none;aspect-ratio:auto;transform:translateX(-50%);border-radius:0}
+.mafv-ph .mafv-vt{border-radius:23px}
 .mafv-pi{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .2s ease}
 .mafv-play:hover .mafv-pi{transform:translate(-50%,-50%) scale(1.08)}
 .mafv-kicker{display:block;font-size:12px;font-weight:700;color:#3361E1;text-transform:uppercase;letter-spacing:.6px}
