@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Vidéos MAF
  * Description: Gère toutes les vidéos Mon Appart Facile (formats courts et vidéos détaillées) à un seul endroit, et les affiche sur la home et la page Vidéos.
- * Version: 1.4.1
+ * Version: 1.5.0
  * Author: Mon Appart Facile
  * Text Domain: maf-videos
  * Requires at least: 6.0
@@ -13,12 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MAFV_VERSION', '1.4.1' );
+define( 'MAFV_VERSION', '1.5.0' );
 define( 'MAFV_URL', plugin_dir_url( __FILE__ ) );
 define( 'MAFV_FILE', __FILE__ );
 require_once __DIR__ . '/maj-github.php';
 require_once __DIR__ . '/recherche.php';
 require_once __DIR__ . '/global.php';
+require_once __DIR__ . '/page-404.php';
 
 /* -------------------------------------------------------------------------
  * 1. Réglages simples (thèmes et emplacements)
@@ -802,7 +803,7 @@ function mafv_grid_longs( $items, $cols = 4 ) {
 add_shortcode( 'maf_videos_home', 'mafv_sc_home' );
 function mafv_sc_home( $atts ) {
 	// « lien » et « lien_texte » : bouton affiché à droite des onglets (ex. vers la page Vidéos).
-	$atts   = shortcode_atts( array( 'courts' => 5, 'longs' => 4, 'lien' => '', 'lien_texte' => 'Voir toutes nos vidéos →' ), $atts );
+	$atts   = shortcode_atts( array( 'courts' => 5, 'longs' => 4, 'colonnes' => 4, 'lien' => '', 'lien_texte' => 'Voir toutes nos vidéos →' ), $atts );
 	$courts = mafv_get( array( 'format' => 'court', 'zone' => 'maf_home', 'limit' => (int) $atts['courts'] ) );
 	$longs  = mafv_get( array( 'format' => 'long', 'zone' => 'maf_home', 'limit' => (int) $atts['longs'] ) );
 	if ( ! $courts && ! $longs ) {
@@ -822,7 +823,7 @@ function mafv_sc_home( $atts ) {
 	}
 	$html .= '</div>';
 	if ( $longs ) {
-		$html .= '<div role="tabpanel" id="' . $uid . '-p2" aria-labelledby="' . $uid . '-t2" class="mafv-panel">' . mafv_grid_longs( $longs, 4 ) . '</div>';
+		$html .= '<div role="tabpanel" id="' . $uid . '-p2" aria-labelledby="' . $uid . '-t2" class="mafv-panel">' . mafv_grid_longs( $longs, in_array( (int) $atts['colonnes'], array( 3, 4 ), true ) ? (int) $atts['colonnes'] : 4 ) . '</div>';
 	}
 	if ( $courts ) {
 		$html .= '<div role="tabpanel" id="' . $uid . '-p1" aria-labelledby="' . $uid . '-t1" class="mafv-panel"' . ( $longs ? ' hidden' : '' ) . '>' . mafv_grid_courts( $courts ) . '</div>';

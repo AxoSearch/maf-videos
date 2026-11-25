@@ -1,0 +1,95 @@
+/* Page 404 Mon Appart Facile (préfixes maf404- et mafx-404-), s'appuie sur maf-home.css et maf-videos.css */
+
+/* 1. Haut de page */
+.mafx-404-hero{padding:36px 0 64px}
+.mafx-404-hero .mafx-hero-grid{align-items:center}
+.mafx-404-hero .mafx-h1{font-size:50px;margin:16px 0 14px !important}
+.mafx-404-hero .mafx-lead{margin-bottom:14px !important}
+.maf404-pill b{font-family:Poppins,sans-serif;color:#E1B333;margin-right:4px}
+.maf404-asked{font-size:13px;color:#DCE5FF;margin:0 0 14px !important;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.maf404-asked code{font:500 13px ui-monospace,Consolas,monospace;background:rgba(20,33,61,.35);padding:4px 9px;border-radius:8px;color:#fff;text-decoration:line-through;text-decoration-color:rgba(225,179,51,.9);word-break:break-all}
+.maf404-search{display:flex;gap:8px;background:#fff;border-radius:16px;padding:8px;box-shadow:0 12px 30px rgba(10,30,90,.25);max-width:540px;margin:0}
+.maf404-search input[type="search"]{flex:1;min-width:0;border:0 !important;outline:0;font-size:16px;padding:10px 12px;background:#fff;color:#14213D;box-shadow:none;margin:0}
+.maf404-search button{border:0;background:#3361E1;color:#fff;border-radius:11px;padding:0 20px;min-height:44px;font-weight:700;font-size:15px;font-family:Poppins,sans-serif;margin:0;cursor:pointer}
+.maf404-search button:hover,.maf404-search button:focus{background:#2A50C2;color:#fff}
+.maf404-chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.maf404-chips span{font-size:13px;color:#DCE5FF;margin-right:2px}
+.maf404-chips a{min-height:38px;display:inline-flex;align-items:center;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.4);font-size:14px;font-weight:500;color:#fff !important;white-space:nowrap;text-decoration:none;transition:background .2s}
+.maf404-chips a:hover{background:rgba(255,255,255,.26)}
+.mafx-404-hero .wp-block-buttons{margin-top:24px !important}
+.mafx-s .mafx-btn-ghost .wp-block-button__link{background:transparent !important;color:#fff !important;border-color:rgba(255,255,255,.55)}
+
+/* Scène animée */
+.maf404-art{width:100%}
+.maf404-scene{display:block;width:100%;max-width:460px;height:auto;margin:0 auto}
+.maf404-bulb{transform-box:view-box;transform-origin:225px 96px;animation:maf404-bal 3.2s ease-in-out infinite alternate}
+.maf404-pool{animation:maf404-pool 3.2s ease-in-out infinite alternate}
+@keyframes maf404-bal{from{transform:rotate(9deg)}to{transform:rotate(-9deg)}}
+@keyframes maf404-pool{from{transform:translateX(-12px)}to{transform:translateX(12px)}}
+.maf404-min{transform-box:view-box;transform-origin:92px 140px;animation:maf404-tour 12s linear infinite}
+.maf404-hr{transform-box:view-box;transform-origin:92px 140px;animation:maf404-tour 120s linear infinite}
+@keyframes maf404-tour{to{transform:rotate(360deg)}}
+.maf404-leaf{transform-box:fill-box;transform-origin:bottom center;animation:maf404-feuille 3.6s ease-in-out infinite}
+.maf404-leaf.b{animation-duration:4.4s;animation-delay:-1.2s}
+@keyframes maf404-feuille{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+.maf404-post{transform-box:fill-box;transform-origin:top center;animation:maf404-post 8s ease-in-out infinite}
+@keyframes maf404-post{0%,20%{transform:rotate(-6deg)}26%{transform:rotate(8deg)}30%,100%{transform:rotate(-6deg)}}
+@media (prefers-reduced-motion:reduce){.maf404-scene *{animation:none !important}}
+
+/* 2. Suggestions */
+.mafx-404-sugg{padding:60px 0 56px}
+.maf404-sub{font-size:15px;color:#4A5672;margin:12px 0 20px !important}
+.maf404-sub b{color:#14213D}
+.maf404-cards{list-style:none;margin:0 !important;padding:0 !important;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.maf404-cards li{margin:0}
+.maf404-card{display:flex;flex-direction:column;height:100%;border-radius:20px;overflow:hidden;background:#F3F6FC;color:#14213D !important;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.maf404-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(20,33,61,.12)}
+.maf404-card-img{display:block;aspect-ratio:16/9;background:#DCE5FF}
+.maf404-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.maf404-card-b{display:flex;flex-direction:column;gap:6px;padding:16px 18px 20px;flex:1}
+.maf404-cat{font-size:12px;font-weight:700;color:#3361E1;text-transform:uppercase;letter-spacing:.6px}
+.maf404-cat[data-cat*="installation"]{color:#2E8A57}
+.maf404-cat[data-cat*="quotidien"]{color:#8733E1}
+.maf404-cat[data-cat*="decoration"]{color:#B4316E}
+.maf404-cat[data-cat*="animaux"]{color:#9A6412}
+.maf404-card-t{font-family:Poppins,sans-serif;font-weight:700;font-size:17px;line-height:1.3}
+.maf404-card-l{margin-top:auto;padding-top:6px;font-weight:700;font-size:14px;color:#3361E1}
+.maf404-cats{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:26px}
+.maf404-cats span{font-size:15px;font-weight:500;color:#4A5672;margin-right:4px}
+.maf404-cats a{font-size:14px;font-weight:500;padding:8px 14px;border-radius:999px;border:1.5px solid #D5DDF0;color:#14213D !important;text-decoration:none}
+.maf404-cats a:hover{background:#EAF0FF}
+
+/* 3. Vidéos : 3 vidéos détaillées sur une ligne, 4 formats courts */
+.mafx-404-videos .mafv-shorts{grid-template-columns:repeat(4,minmax(0,190px));justify-content:center}
+
+/* 4. Contact */
+.mafx-404-contact{background:#F3F6FC;padding:60px 0 64px}
+.maf404-besoins{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:26px}
+.maf404-besoin{color:#14213D !important;text-decoration:none}
+.maf404-besoin .mafx-ct-ot{font-family:Poppins,sans-serif;font-weight:700;font-size:17px;line-height:1.3}
+.maf404-besoin .mafx-ct-od{font-size:14px;line-height:1.5;color:#4A5672}
+.maf404-besoin-l{margin-top:auto;padding-top:4px;font-weight:700;font-size:14px;color:#3361E1}
+.mafx-404-mail{margin-top:20px !important;font-size:15px;color:#4A5672}
+.mafx-404-mail a{font-weight:700;color:#3361E1}
+
+@media (max-width:980px){
+	.mafx-404-hero{padding:20px 0 44px}
+	.mafx-404-hero .mafx-hero-grid{gap:4px}
+	.mafx-404-hero .maf404-art{order:-1}
+	.maf404-scene{max-width:230px}
+	.mafx-404-hero .mafx-h1{font-size:34px;margin-top:10px !important}
+	.maf404-search button{padding:0 14px}
+	.maf404-chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+	.mafx-404-hero .wp-block-button{width:100%}
+	.mafx-404-hero .wp-block-button__link{width:100%;justify-content:center}
+	.mafx-404-sugg,.mafx-404-contact{padding:40px 0}
+	.maf404-cards{grid-template-columns:minmax(0,1fr);gap:14px}
+	.maf404-card{flex-direction:row;align-items:stretch}
+	.maf404-card-img{aspect-ratio:auto;width:120px;flex-shrink:0}
+	.maf404-card-b{padding:12px 14px}
+	.maf404-card-t{font-size:15px}
+	.mafx-404-videos .mafv-cols3{grid-template-columns:repeat(3,260px);overflow-x:auto;padding-bottom:8px}
+	.mafx-404-videos .mafv-shorts{grid-template-columns:repeat(4,150px);justify-content:start;overflow-x:auto;padding-bottom:8px}
+	.maf404-besoins{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){.maf404-besoins{grid-template-columns:minmax(0,1fr)}}
