@@ -164,7 +164,6 @@ function mafv_404_sc_recherche() {
 		'Matelas'        => add_query_arg( 's', 'matelas', home_url( '/' ) ),
 		'Canapé'         => add_query_arg( 's', 'canapé', home_url( '/' ) ),
 		'Premier appart' => add_query_arg( 's', 'premier appartement', home_url( '/' ) ),
-		'Chauffage'      => add_query_arg( 's', 'chauffage', home_url( '/' ) ),
 		'Avis marques'   => home_url( '/categorie-avis/' ),
 	);
 	ob_start();
@@ -311,22 +310,16 @@ function mafv_404_sc_suggestions() {
 	return ob_get_clean();
 }
 
-/** [maf_404_besoins] : les grands besoins de contact, chacun avec l'objet du message déjà rempli. */
+/** [maf_404_besoins] : les cas les plus fréquents et un seul bouton vers la page Contact. */
 add_shortcode( 'maf_404_besoins', 'mafv_404_sc_besoins' );
 function mafv_404_sc_besoins() {
-	$contact = home_url( '/contact/' );
-	$items   = array(
-		array( 'Lecteurs', 'mafx-ct-o1', 'Une question sur un article', 'Un conseil, une précision, une idée de sujet : on lit tous les messages.', 'Question sur un article' ),
-		array( 'Lecteurs', 'mafx-ct-o1', 'Signaler un lien cassé', 'Dites-nous d\'où vous venez, on corrige le lien rapidement.', 'Lien cassé : ' . mafv_404_adresse() ),
-		array( 'Marques', 'mafx-ct-o2', 'Avis de marque ou vidéo', 'Article détaillé, vidéo YouTube ou format court sur TikTok, Instagram et YouTube.', 'Partenariat : avis de marque ou vidéo' ),
-		array( 'Marques', 'mafx-ct-o4', 'Article sponsorisé ou affiliation', 'Un contenu utile à nos lecteurs, ou vos produits dans nos comparatifs.', 'Partenariat : article sponsorisé ou affiliation' ),
-	);
-	$html = '<div class="maf404-besoins">';
-	foreach ( $items as $it ) {
-		$url   = add_query_arg( 'your-subject', rawurlencode( $it[4] ), $contact );
-		$html .= '<a class="mafx-ct-offre maf404-besoin" href="' . esc_url( $url ) . '"><span class="mafx-ct-otag ' . esc_attr( $it[1] ) . '">' . esc_html( $it[0] ) . '</span><span class="mafx-ct-ot">' . esc_html( $it[2] ) . '</span><span class="mafx-ct-od">' . esc_html( $it[3] ) . '</span><span class="maf404-besoin-l">Nous écrire →</span></a>';
+	$cas  = array( 'Une question sur un article', 'Un lien cassé à signaler', 'Un avis de marque ou une vidéo', 'Un article sponsorisé ou de l’affiliation' );
+	$html = '<div class="maf404-contact"><div class="maf404-contact-t"><p class="maf404-contact-p">Écrivez-nous, on répond à tous les messages. Par exemple pour :</p><ul class="maf404-cas">';
+	foreach ( $cas as $c ) {
+		$html .= '<li>' . esc_html( $c ) . '</li>';
 	}
-	return $html . '</div>';
+	$html .= '</ul></div><a class="maf404-cta" href="' . esc_url( home_url( '/contact/' ) ) . '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>Nous écrire</a></div>';
+	return $html;
 }
 
 /* Formulaire de contact : l'objet se remplit depuis le lien (?your-subject=…). */

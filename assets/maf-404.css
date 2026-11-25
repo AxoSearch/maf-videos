@@ -2,7 +2,7 @@
 
 /* 1. Haut de page */
 .mafx-404-hero{padding:36px 0 64px}
-.mafx-404-hero .mafx-hero-grid{align-items:center}
+.mafx-404-hero .mafx-hero-grid{align-items:start}
 .mafx-404-hero .mafx-h1{font-size:50px;margin:16px 0 14px !important}
 .mafx-404-hero .mafx-lead{margin-bottom:14px !important}
 .maf404-pill b{font-family:Poppins,sans-serif;color:#E1B333;margin-right:4px}
@@ -12,7 +12,7 @@
 .maf404-search input[type="search"]{flex:1;min-width:0;border:0 !important;outline:0;font-size:16px;padding:10px 12px;background:#fff;color:#14213D;box-shadow:none;margin:0}
 .maf404-search button{border:0;background:#3361E1;color:#fff;border-radius:11px;padding:0 20px;min-height:44px;font-weight:700;font-size:15px;font-family:Poppins,sans-serif;margin:0;cursor:pointer}
 .maf404-search button:hover,.maf404-search button:focus{background:#2A50C2;color:#fff}
-.maf404-chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.maf404-chips{display:flex;gap:8px;flex-wrap:nowrap;align-items:center;margin-top:16px}
 .maf404-chips span{font-size:13px;color:#DCE5FF;margin-right:2px}
 .maf404-chips a{min-height:38px;display:inline-flex;align-items:center;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.4);font-size:14px;font-weight:500;color:#fff !important;white-space:nowrap;text-decoration:none;transition:background .2s}
 .maf404-chips a:hover{background:rgba(255,255,255,.26)}
@@ -21,7 +21,7 @@
 
 /* Scène animée */
 .maf404-art{width:100%}
-.maf404-scene{display:block;width:100%;max-width:460px;height:auto;margin:0 auto}
+.maf404-scene{display:block;width:100%;max-width:400px;height:auto;margin:0 auto}
 .maf404-bulb{transform-box:view-box;transform-origin:225px 96px;animation:maf404-bal 3.2s ease-in-out infinite alternate}
 .maf404-pool{animation:maf404-pool 3.2s ease-in-out infinite alternate}
 @keyframes maf404-bal{from{transform:rotate(9deg)}to{transform:rotate(-9deg)}}
@@ -64,13 +64,13 @@
 
 /* 4. Contact */
 .mafx-404-contact{background:#F3F6FC;padding:60px 0 64px}
-.maf404-besoins{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:26px}
-.maf404-besoin{color:#14213D !important;text-decoration:none}
-.maf404-besoin .mafx-ct-ot{font-family:Poppins,sans-serif;font-weight:700;font-size:17px;line-height:1.3}
-.maf404-besoin .mafx-ct-od{font-size:14px;line-height:1.5;color:#4A5672}
-.maf404-besoin-l{margin-top:auto;padding-top:4px;font-weight:700;font-size:14px;color:#3361E1}
-.mafx-404-mail{margin-top:20px !important;font-size:15px;color:#4A5672}
-.mafx-404-mail a{font-weight:700;color:#3361E1}
+.maf404-contact{display:flex;align-items:center;justify-content:space-between;gap:28px;margin-top:24px;background:#fff;border-radius:24px;padding:26px 30px;box-shadow:0 14px 34px rgba(20,33,61,.08)}
+.maf404-contact-t{min-width:0}
+.maf404-contact-p{font-size:16px;color:#4A5672;margin:0 0 12px !important}
+.maf404-cas{list-style:none;margin:0 !important;padding:0 !important;display:flex;flex-wrap:wrap;gap:8px}
+.maf404-cas li{margin:0;font-size:14px;font-weight:500;padding:7px 13px;border-radius:999px;background:#F3F6FC;border:1px solid #E3E8F4;color:#14213D}
+.maf404-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:0 30px;border-radius:999px;background:#E1B333;color:#14213D !important;font-family:Poppins,sans-serif;font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 10px 24px rgba(10,20,60,.18);transition:transform .2s ease}
+.maf404-cta:hover{transform:translateY(-2px)}
 
 @media (max-width:980px){
 	.mafx-404-hero{padding:20px 0 44px}
@@ -90,6 +90,6 @@
 	.maf404-card-t{font-size:15px}
 	.mafx-404-videos .mafv-cols3{grid-template-columns:repeat(3,260px);overflow-x:auto;padding-bottom:8px}
 	.mafx-404-videos .mafv-shorts{grid-template-columns:repeat(4,150px);justify-content:start;overflow-x:auto;padding-bottom:8px}
-	.maf404-besoins{grid-template-columns:repeat(2,minmax(0,1fr))}
+	.maf404-contact{flex-direction:column;align-items:stretch;padding:20px}
+	.maf404-cta{justify-content:center}
 }
-@media (max-width:560px){.maf404-besoins{grid-template-columns:minmax(0,1fr)}}
