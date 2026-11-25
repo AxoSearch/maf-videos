@@ -1,9 +1,9 @@
 /* Page 404 Mon Appart Facile (préfixes maf404- et mafx-404-), s'appuie sur maf-home.css et maf-videos.css */
 
 /* 1. Haut de page */
-.mafx-404-hero{padding:36px 0 64px}
+.mafx-404-hero{padding:12px 0 60px}
 .mafx-404-hero .mafx-hero-grid{align-items:start}
-.mafx-404-hero .mafx-h1{font-size:50px;margin:16px 0 14px !important}
+.mafx-404-hero .mafx-h1{font-size:50px;margin:0 0 14px !important}
 .mafx-404-hero .mafx-lead{margin-bottom:14px !important}
 .maf404-pill b{font-family:Poppins,sans-serif;color:#E1B333;margin-right:4px}
 .maf404-asked{font-size:13px;color:#DCE5FF;margin:0 0 14px !important;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
@@ -73,7 +73,7 @@
 .maf404-cta:hover{transform:translateY(-2px)}
 
 @media (max-width:980px){
-	.mafx-404-hero{padding:20px 0 44px}
+	.mafx-404-hero{padding:12px 0 44px}
 	.mafx-404-hero .mafx-hero-grid{gap:4px}
 	.mafx-404-hero .maf404-art{order:-1}
 	.maf404-scene{max-width:230px}
